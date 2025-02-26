@@ -1,6 +1,7 @@
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -107,7 +108,7 @@ public class Password {
         HashMap<String, Boolean> passwordMap = new HashMap<>();
         for (String password : passwords) {
             passwordMap.put(password, isStrongPassword(password));
-        }   
+        }
         return passwordMap;
     }
 
@@ -124,10 +125,37 @@ public class Password {
      * @return A randomly generated password that meets the security criteria.
      */
     public static String generatePassword(int nbCar) {
+        if (nbCar < 4) {
+            System.err.println("La taille du mot de passe aléatoire doit être de 4 caractères minimum.");
+        }
+        List<Character> passwordMap = new ArrayList<>();
+        for (char c = 'a'; c <= 'z'; c++) {
+            passwordMap.add(c);
+        }
+        for (char c = '0'; c <= '9'; c++) {
+            passwordMap.add(c);
+        }
+        List<Character> specialCharactersInSolr = Arrays.asList(new Character[] {
+                '+', '-', '&', '|', '!', '(', ')', '{', '}', '[', ']', '^',
+                '~', '*', '?', ':' });
 
-        // Code here
+        List<String> ordrecaracteres = new ArrayList<>();
+        ordrecaracteres = List.of("maj", "min", "chiffre", "spec");
+        for (int i = 4; i < nbCar; i++) {
+            int alea = (int) (Math.random() * 4);
+            ordrecaracteres.add(ordrecaracteres[alea])
+        }
+        System.out.println(passwordMap);
+        String mdp = "";
+        for (int i = 0; i < nbCar; i++) {
+            // On va déterminer l'ordre des caractères obligatoires.
+            int randomNum = (int) (Math.random() * 5);
+
+            System.out.println(randomNum);
+        }
 
         return null;
+
     }
 
     public static void main(String[] args) {
