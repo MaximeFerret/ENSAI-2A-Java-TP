@@ -39,8 +39,24 @@ public class Password {
      * @return the 6-digit number that matches, or null if no match is found
      */
     public static String bruteForce6Digit(String targetHash) {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                for (int k = 0; k < 10; k++) {
+                    for (int l = 0; l < 10; l++) {
+                        for (int m = 0; m < 10; m++) {
+                            for (int n = 0; n < 10; n++) {
+                                String mdp = Integer.toString(i) + Integer.toString(j) + Integer.toString(k)
+                                        + Integer.toString(l) + Integer.toString(m) + Integer.toString(n);
+                                if (hashPassword(mdp).equals(targetHash)) {
+                                    return mdp;
+                                }
 
-        // Code here
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         return null;
     }
