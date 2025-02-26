@@ -85,7 +85,7 @@ public class Password {
     }
 
     public static boolean isStrongPassword(String password) {
-        boolean condition = (password.length() >= 12)
+        return (password.length() >= 12)
                 && !(password.toLowerCase().equals(password))
                 && !(password.toUpperCase().equals(password))
                 && (password.contains("0") || password.contains("1") || password.contains("2") || password.contains("3")
@@ -93,11 +93,6 @@ public class Password {
                         || password.contains("7") || password.contains("8") || password.contains("9"))
                 && isNotNumeric(password)
                 && (password.replaceAll(" ", "").equals(password));
-        if (condition) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     /**
@@ -109,10 +104,11 @@ public class Password {
      *         true if the password is strong, false otherwise
      */
     public static HashMap<String, Boolean> checkPasswordsList(ArrayList<String> passwords) {
-
-        // Code here
-
-        return null;
+        HashMap<String, Boolean> passwordMap = new HashMap<>();
+        for (String password : passwords) {
+            passwordMap.put(password, isStrongPassword(password));
+        }   
+        return passwordMap;
     }
 
     /**
