@@ -75,11 +75,29 @@ public class Password {
      * @param password the password to check
      * @return true if the password is strong, false otherwise
      */
+    public static boolean isNotNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return false;
+        } catch (NumberFormatException e) {
+            return true;
+        }
+    }
+
     public static boolean isStrongPassword(String password) {
-
-        // Code here
-
-        return false;
+        boolean condition = (password.length() >= 12)
+                && !(password.toLowerCase().equals(password))
+                && !(password.toUpperCase().equals(password))
+                && (password.contains("0") || password.contains("1") || password.contains("2") || password.contains("3")
+                        || password.contains("4") || password.contains("5") || password.contains("6")
+                        || password.contains("7") || password.contains("8") || password.contains("9"))
+                && isNotNumeric(password)
+                && (password.replaceAll(" ", "").equals(password));
+        if (condition) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
