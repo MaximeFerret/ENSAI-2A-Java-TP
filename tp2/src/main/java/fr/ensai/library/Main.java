@@ -14,5 +14,13 @@ public class Main {
                 423);
 
         System.out.println(fellowshipOfTheRing.toString());
+
+        Library librairie = new Library("MaximeBooks");
+        librairie.displayItems();
+        librairie.loadBooksFromCSV("books.csv");
+
+        Magazine vogue = new Magazine("867-9-507-15914-5", "Vogue 1er ouvrage", 1915, 1953, 0);
+        librairie.addMagazine(vogue);
+        librairie.displayItems();
     }
 }

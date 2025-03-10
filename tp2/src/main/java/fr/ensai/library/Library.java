@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,31 +15,35 @@ import java.util.Map;
 public class Library {
     // Attributes
     private String name;
-    private List<Book> books;
+    private List<Item> items;
 
     /**
      * Constructs a new Library object.
      */
-    public Library(String name, List<Book> books) {
+    public Library(String name) {
         this.name = name;
-        this.books = books;
+        this.items = new ArrayList<>();
     }
 
     public void addBook(Book book) {
         if (book != null) {
-            this.books.add(book);
+            this.items.add(book);
         }
     }
 
-    public void displayBooks() {
-        List<Book> books_remaining = this.books;
-        if (books_remaining.size() == 0) {
-            System.out.println("La librairie est vide.");
+    public void addMagazine(Magazine magazine) {
+        if (magazine != null) {
+            this.items.add(magazine);
         }
-        while (books_remaining.size() > 0) {
-            System.out.println(books_remaining.get(1).toString());
-            books_remaining.remove(1);
+    }
 
+    public void displayItems() {
+        if (this.items.isEmpty()) {
+            System.out.println("La librairie est vide.");
+        } else {
+            for (Item item : this.items) {
+                System.out.println(item);
+            }
         }
     }
 

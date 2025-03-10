@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +13,8 @@ class LibraryTest {
     @Test
     void findActiveLoanForItem_ItemIsLoaned() {
         // GIVEN
-        Library library = new Library("Test Library");
-        Book book1 = new Book("978-0321765723", "Book 1", new Author("Author 1"), 2008, 320);
+        Book book1 = new Book("978-0321765723", "Book 1", new Author("Author 1", 20, "Indien"), 2008, 320);
+        Library library = new Library("Test Library", List.of(book1));
         Student student = new Student("John Doe", 20, 2, true);
         Loan loan1 = new Loan(book1, student, new Date());
         library.getActiveLoans().add(loan1);
